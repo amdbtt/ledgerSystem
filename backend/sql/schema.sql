@@ -1,0 +1,207 @@
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS uploads;
+DROP TABLE IF EXISTS payments;
+DROP TABLE IF EXISTS quote_items;
+DROP TABLE IF EXISTS quotes;
+DROP TABLE IF EXISTS invoice_items;
+DROP TABLE IF EXISTS invoices;
+DROP TABLE IF EXISTS payment_modes;
+DROP TABLE IF EXISTS taxes;
+DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS settings;
+DROP TABLE IF EXISTS password_resets;
+DROP TABLE IF EXISTS admins;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE admins (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  surname VARCHAR(120) NOT NULL DEFAULT '',
+  email VARCHAR(190) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  photo VARCHAR(255) NULL,
+  role VARCHAR(50) NOT NULL DEFAULT 'admin',
+  enabled TINYINT(1) NOT NULL DEFAULT 1,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_admins_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE password_resets (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  admin_id INT UNSIGNED NOT NULL,
+  token_hash VARCHAR(255) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  used_at DATETIME NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_password_resets_admin FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE,
+  KEY idx_password_resets_admin (admin_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE settings (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  setting_category VARCHAR(100) NOT NULL,
+  setting_key VARCHAR(100) NOT NULL,
+  setting_value TEXT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_settings_key (setting_key),
+  KEY idx_settings_category (setting_category)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE clients (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(190) NOT NULL,
+  country VARCHAR(120) NULL,
+  address VARCHAR(255) NULL,
+  phone VARCHAR(60) NULL,
+  email VARCHAR(190) NULL,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_clients_removed (removed),
+  KEY idx_clients_name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE taxes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  tax_name VARCHAR(120) NOT NULL,
+  tax_value DECIMAL(8,2) NOT NULL DEFAULT 0,
+  is_default TINYINT(1) NOT NULL DEFAULT 0,
+  enabled TINYINT(1) NOT NULL DEFAULT 1,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_taxes_removed (removed)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE payment_modes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  description VARCHAR(255) NULL,
+  is_default TINYINT(1) NOT NULL DEFAULT 0,
+  enabled TINYINT(1) NOT NULL DEFAULT 1,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_payment_modes_removed (removed)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE invoices (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  client_id INT UNSIGNED NOT NULL,
+  quote_id INT UNSIGNED NULL,
+  number INT UNSIGNED NOT NULL,
+  year SMALLINT UNSIGNED NOT NULL,
+  date DATE NOT NULL,
+  expired_date DATE NOT NULL,
+  currency CHAR(3) NOT NULL DEFAULT 'PKR',
+  status VARCHAR(40) NOT NULL DEFAULT 'draft',
+  payment_status VARCHAR(40) NOT NULL DEFAULT 'unpaid',
+  notes TEXT NULL,
+  sub_total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  tax_rate DECIMAL(8,2) NOT NULL DEFAULT 0,
+  tax_total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  discount DECIMAL(12,2) NOT NULL DEFAULT 0,
+  credit DECIMAL(12,2) NOT NULL DEFAULT 0,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_invoices_number_year (number, year),
+  KEY idx_invoices_client (client_id),
+  KEY idx_invoices_removed (removed),
+  KEY idx_invoices_currency (currency),
+  CONSTRAINT fk_invoices_client FOREIGN KEY (client_id) REFERENCES clients(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE invoice_items (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  invoice_id INT UNSIGNED NOT NULL,
+  item_name VARCHAR(190) NOT NULL,
+  description VARCHAR(255) NULL,
+  price DECIMAL(12,2) NOT NULL DEFAULT 0,
+  quantity DECIMAL(12,2) NOT NULL DEFAULT 0,
+  total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_invoice_items_invoice (invoice_id),
+  CONSTRAINT fk_invoice_items_invoice FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE quotes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  client_id INT UNSIGNED NOT NULL,
+  number INT UNSIGNED NOT NULL,
+  year SMALLINT UNSIGNED NOT NULL,
+  date DATE NOT NULL,
+  expired_date DATE NOT NULL,
+  currency CHAR(3) NOT NULL DEFAULT 'PKR',
+  status VARCHAR(40) NOT NULL DEFAULT 'draft',
+  notes TEXT NULL,
+  sub_total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  tax_rate DECIMAL(8,2) NOT NULL DEFAULT 0,
+  tax_total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  discount DECIMAL(12,2) NOT NULL DEFAULT 0,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_quotes_number_year (number, year),
+  KEY idx_quotes_client (client_id),
+  KEY idx_quotes_removed (removed),
+  KEY idx_quotes_currency (currency),
+  CONSTRAINT fk_quotes_client FOREIGN KEY (client_id) REFERENCES clients(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE quote_items (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  quote_id INT UNSIGNED NOT NULL,
+  item_name VARCHAR(190) NOT NULL,
+  description VARCHAR(255) NULL,
+  price DECIMAL(12,2) NOT NULL DEFAULT 0,
+  quantity DECIMAL(12,2) NOT NULL DEFAULT 0,
+  total DECIMAL(12,2) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY idx_quote_items_quote (quote_id),
+  CONSTRAINT fk_quote_items_quote FOREIGN KEY (quote_id) REFERENCES quotes(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE payments (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  number INT UNSIGNED NOT NULL,
+  year SMALLINT UNSIGNED NOT NULL,
+  client_id INT UNSIGNED NOT NULL,
+  invoice_id INT UNSIGNED NOT NULL,
+  payment_mode_id INT UNSIGNED NOT NULL,
+  date DATE NOT NULL,
+  amount DECIMAL(12,2) NOT NULL DEFAULT 0,
+  currency CHAR(3) NOT NULL DEFAULT 'PKR',
+  ref VARCHAR(120) NULL,
+  description VARCHAR(255) NULL,
+  removed TINYINT(1) NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_payments_number_year (number, year),
+  KEY idx_payments_client (client_id),
+  KEY idx_payments_invoice (invoice_id),
+  KEY idx_payments_removed (removed),
+  CONSTRAINT fk_payments_client FOREIGN KEY (client_id) REFERENCES clients(id),
+  CONSTRAINT fk_payments_invoice FOREIGN KEY (invoice_id) REFERENCES invoices(id),
+  CONSTRAINT fk_payments_mode FOREIGN KEY (payment_mode_id) REFERENCES payment_modes(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE uploads (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  model VARCHAR(40) NOT NULL,
+  model_id INT UNSIGNED NOT NULL,
+  file_name VARCHAR(255) NOT NULL,
+  path VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  KEY idx_uploads_model (model, model_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

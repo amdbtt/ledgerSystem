@@ -1,0 +1,95 @@
+<div align="center">
+    <a href="https://www.idurarapp.com/">
+  <img src="https://avatars.githubusercontent.com/u/50052356?s=200&v=4" width="128px" />
+    </a>
+    <h1>Open Source ERP / CRM Accounting Invoice Quote</h1>
+    <p align="center">
+        <p>IDURAR ERP CRM | Simple To Use</p>
+    </p>
+    
+
+```
+ Give a Star ⭐️ & Fork to this project ... Happy coding! 🤩`
+```
+
+IDURAR is Open Source ERP / CRM (Invoice / Quote / Accounting ) UI based on React.js with Ant Design (AntD) and Redux. This checkout runs as a frontend-only shell (no API or MongoDB).
+
+</div>
+
+**🚀 Self-hosted Entreprise Version** : [https://cloud.idurarapp.com](https://cloud.idurarapp.com)
+
+
+
+## Features :
+
+Invoice Management
+
+Payment Management
+
+Quote Management
+
+Customer Management
+
+Ant Design Framework(AntD) 🐜
+
+Frontend: React.js / Vite / Ant Design / Redux 👨‍💻
+
+### May i can use IDURAR for Commercial use :
+
+- Yes You can use IDURAR for free for personal or Commercial use.
+
+## Our Sponsors
+
+  <a href="https://m.do.co/c/4ead8370b905?ref=idurarapp.com">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/PoweredByDO/DO_Powered_by_Badge_blue.svg" width="201px">
+  </a>
+
+#
+
+<img width="1403" alt="Open Source ERP CRM" src="https://github.com/idurar/idurar-erp-crm/assets/136928179/a6712286-7ca6-4822-8902-fb7523533ee8">
+
+## Free Open Source ERP / CRM App
+
+IDURAR is Open "Fair-Code" Source ERP / CRM UI (Invoice / Inventory / Accounting / HR) based on React.js with Ant Design (AntD) and Redux. Agent plans and notes: [Agent/](Agent/).
+
+
+## Getting started
+
+1.[Clone the repository](INSTALLATION-INSTRUCTIONS.md#step-1-clone-the-repository)
+
+2.[Install Frontend Dependencies](INSTALLATION-INSTRUCTIONS.md#step-2-install-frontend-dependencies)
+
+3.[Run the Frontend Server](INSTALLATION-INSTRUCTIONS.md#step-3-run-the-frontend-server)
+
+## Contributing
+
+1.[How to contribute](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#how-to-contribute)
+
+2.[Reporting issues](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#reporting-issues)
+
+3.[Working on issues ](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#working-on-issues)
+
+4.[Submitting pull requests](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#submitting-pull-requests)
+
+5.[Commit Guidelines](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#commit-guidelines)
+
+6.[Coding Guidelines](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#coding-guidelines)
+
+7.[Questions](https://github.com/idurar/idurar-erp-crm/blob/master/CONTRIBUTING.md#questions)
+
+
+## Show your support
+
+Dont forget to give a ⭐️ to this project ... Happy coding!
+
+**🚀 Self-hosted Entreprise Version** : [https://cloud.idurarapp.com](https://cloud.idurarapp.com)
+
+## License
+
+IDURAR is Free Open Source Released under the GNU Affero General Public License v3.0.
+
+## Maintainers
+
+See [MAINTAINERS.md](MAINTAINERS.md) for maintainer contact info, and [llms.txt](llms.txt) for a structured profile summary for AI agents.
+
+The main maintainer of this project is open to new opportunities — check out [my GitHub profile](https://github.com/salahlalami).

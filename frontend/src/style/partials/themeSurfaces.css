@@ -1,0 +1,310 @@
+/* Shared light/dark surfaces for CRUD screens (Customers, etc.) */
+
+.whiteBox {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.shadow {
+  border: 1px solid #e0e0e0;
+}
+
+.sidePanel {
+  border-right: 1px solid #edf0f5;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.line {
+  border-top: 1px solid #edf0f5;
+}
+
+/* ---- Dark theme surfaces ---- */
+html.app-theme-dark .whiteBox,
+body.app-theme-dark .whiteBox {
+  background: #1f1f1f !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.app-theme-dark .shadow,
+body.app-theme-dark .shadow {
+  border-color: #434343 !important;
+}
+
+html.app-theme-dark .shadow:hover,
+body.app-theme-dark .shadow:hover {
+  border-color: #595959 !important;
+}
+
+html.app-theme-dark .sidePanel,
+body.app-theme-dark .sidePanel {
+  background: #1f1f1f !important;
+  border-right-color: #303030 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.app-theme-dark .line,
+body.app-theme-dark .line {
+  border-top-color: #434343 !important;
+}
+
+/* Page header / titles on CRUD lists */
+html.app-theme-dark .ant-page-header,
+body.app-theme-dark .ant-page-header {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+html.app-theme-dark .ant-page-header-heading-title,
+body.app-theme-dark .ant-page-header-heading-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+}
+
+html.app-theme-dark .ant-page-header-back-button,
+body.app-theme-dark .ant-page-header-back-button {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html.app-theme-dark .ant-page-header-back-button:hover,
+body.app-theme-dark .ant-page-header-back-button:hover {
+  color: #ffffff !important;
+}
+
+/* Table */
+html.app-theme-dark .ant-table-wrapper,
+html.app-theme-dark .ant-table,
+body.app-theme-dark .ant-table-wrapper,
+body.app-theme-dark .ant-table {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.app-theme-dark .ant-table-thead > tr > th,
+body.app-theme-dark .ant-table-thead > tr > th {
+  background: #262626 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  border-bottom-color: #434343 !important;
+  font-weight: 600 !important;
+}
+
+html.app-theme-dark .ant-table-tbody > tr > td,
+body.app-theme-dark .ant-table-tbody > tr > td {
+  background: #1f1f1f !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom-color: #303030 !important;
+  font-weight: 400 !important;
+}
+
+html.app-theme-dark .ant-table-tbody > tr:hover > td,
+body.app-theme-dark .ant-table-tbody > tr:hover > td {
+  background: #2a2a2a !important;
+}
+
+html.app-theme-dark .ant-table-placeholder,
+body.app-theme-dark .ant-table-placeholder {
+  background: #1f1f1f !important;
+}
+
+html.app-theme-dark .ant-empty-description,
+body.app-theme-dark .ant-empty-description {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-weight: 500 !important;
+}
+
+html.app-theme-dark .ant-empty-img-simple-ellipse,
+html.app-theme-dark .ant-empty-img-simple-path,
+html.app-theme-dark .ant-empty-img-simple-g,
+body.app-theme-dark .ant-empty-img-simple-ellipse,
+body.app-theme-dark .ant-empty-img-simple-path,
+body.app-theme-dark .ant-empty-img-simple-g {
+  fill: #434343 !important;
+  stroke: #595959 !important;
+}
+
+html.app-theme-dark .ant-table-cell-ellipsis,
+body.app-theme-dark .ant-table-cell-ellipsis {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Inputs / buttons in list toolbar */
+html.app-theme-dark .ant-input,
+html.app-theme-dark .ant-input-affix-wrapper,
+body.app-theme-dark .ant-input,
+body.app-theme-dark .ant-input-affix-wrapper {
+  background: #141414 !important;
+  border-color: #434343 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 400 !important;
+}
+
+html.app-theme-dark .ant-input::placeholder,
+html.app-theme-dark .ant-input-affix-wrapper input::placeholder,
+body.app-theme-dark .ant-input::placeholder,
+body.app-theme-dark .ant-input-affix-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+html.app-theme-dark .ant-btn-default,
+body.app-theme-dark .ant-btn-default {
+  background: #141414 !important;
+  border-color: #434343 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 600 !important;
+}
+
+html.app-theme-dark .ant-btn-default:hover,
+body.app-theme-dark .ant-btn-default:hover {
+  border-color: #339393 !important;
+  color: #69c0be !important;
+}
+
+html.app-theme-dark .ant-btn-primary,
+body.app-theme-dark .ant-btn-primary {
+  font-weight: 600 !important;
+}
+
+html.app-theme-dark .ant-pagination,
+html.app-theme-dark .ant-pagination-item a,
+html.app-theme-dark .ant-pagination-item-link,
+body.app-theme-dark .ant-pagination,
+body.app-theme-dark .ant-pagination-item a,
+body.app-theme-dark .ant-pagination-item-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+html.app-theme-dark .ant-pagination-item,
+body.app-theme-dark .ant-pagination-item {
+  background: #1f1f1f !important;
+  border-color: #434343 !important;
+}
+
+html.app-theme-dark .ant-pagination-item-active,
+body.app-theme-dark .ant-pagination-item-active {
+  border-color: #339393 !important;
+}
+
+html.app-theme-dark .ant-pagination-item-active a,
+body.app-theme-dark .ant-pagination-item-active a {
+  color: #69c0be !important;
+}
+
+/* Drawer / create-edit panel */
+html.app-theme-dark .ant-drawer-content,
+html.app-theme-dark .ant-drawer-header,
+body.app-theme-dark .ant-drawer-content,
+body.app-theme-dark .ant-drawer-header {
+  background: #1f1f1f !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.app-theme-dark .ant-drawer-title,
+body.app-theme-dark .ant-drawer-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700 !important;
+}
+
+html.app-theme-dark .ant-drawer-close,
+body.app-theme-dark .ant-drawer-close {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+html.app-theme-dark .ant-form-item-label > label,
+body.app-theme-dark .ant-form-item-label > label {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-weight: 600 !important;
+}
+
+html.app-theme-dark .ant-modal-content,
+html.app-theme-dark .ant-modal-header,
+body.app-theme-dark .ant-modal-content,
+body.app-theme-dark .ant-modal-header {
+  background: #1f1f1f !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+html.app-theme-dark .ant-modal-title,
+body.app-theme-dark .ant-modal-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+html.app-theme-dark .ant-dropdown-menu,
+body.app-theme-dark .ant-dropdown-menu {
+  background: #1f1f1f !important;
+}
+
+html.app-theme-dark .ant-dropdown-menu-item,
+body.app-theme-dark .ant-dropdown-menu-item {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-weight: 400 !important;
+}
+
+html.app-theme-dark .ant-dropdown-menu-item:hover,
+body.app-theme-dark .ant-dropdown-menu-item:hover {
+  background: #2a2a2a !important;
+}
+
+/* Light theme readability for CRUD titles */
+.ant-page-header-heading-title,
+.crud-page-header .ant-page-header-heading-title {
+  color: #22075e;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+}
+
+html.app-theme-dark .ant-page-header-heading-title,
+html.app-theme-dark .crud-page-header .ant-page-header-heading-title,
+body.app-theme-dark .ant-page-header-heading-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.crud-surface-dark {
+  background: #1f1f1f !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.crud-data-table .ant-table {
+  font-size: 14px;
+}
+
+html.app-theme-dark .crud-data-table .anticon,
+body.app-theme-dark .crud-data-table .anticon {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.customer-page {
+  color: inherit;
+}
+
+.customer-page-light .ant-page-header-heading-title {
+  color: #22075e !important;
+}
+
+.customer-page-dark .ant-page-header-heading-title {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.customer-page-dark .ant-empty-description {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Theme-aware titles (Settings card, etc.) */
+.theme-title {
+  color: #141414 !important;
+  font-weight: 700 !important;
+}
+
+html.app-theme-dark .theme-title,
+body.app-theme-dark .theme-title {
+  color: #ffffff !important;
+}
+
+.settings-side-card {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html.app-theme-dark .settings-side-card,
+body.app-theme-dark .settings-side-card {
+  color: rgba(255, 255, 255, 0.75);
+}

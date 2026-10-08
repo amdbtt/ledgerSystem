@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+* {
+  font-family: 'Nunito', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff !important;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.ant-page-header-heading-title,
+.ant-typography h1,
+.ant-typography h2,
+.ant-typography h3,
+.ant-typography h4,
+.ant-typography h5 {
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+}
+
+.ant-btn,
+.ant-menu-item,
+.ant-table-thead > tr > th {
+  font-weight: 600 !important;
+}
+
+.ant-table,
+.ant-input,
+.ant-select,
+.ant-form-item-label > label,
+.ant-empty-description,
+p,
+span {
+  font-weight: 400;
+}
+
+strong,
+b,
+.ant-typography strong {
+  font-weight: 700;
+}
+
+html.app-theme-dark,
+html.app-theme-dark body,
+body.app-theme-dark {
+  background: #141414 !important;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+html.app-theme-dark #root,
+body.app-theme-dark #root {
+  background: #141414 !important;
+  min-height: 100vh;
+}
